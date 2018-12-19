@@ -1,0 +1,46 @@
+# OPLS - coronene
+
+units		real
+atom_style	full
+
+boundary        p p p
+
+read_data    graphene_on_graphite.data
+kspace_style	pppm 0.0001
+
+pair_style hybrid/overlay lj/cut/coul/long 11.0 9.0 hbond/graphene 2 5.0 6.0 45
+pair_coeff 	1 1 hbond/graphene 1 i 0.025  3.627 2  
+pair_coeff      1 1 lj/cut/coul/long 0.020 3.5500
+
+pair_coeff      2 2 lj/cut/coul/long 0.03000 2.4200
+pair_coeff      1 2 lj/cut/coul/long 0.04583 2.9310
+
+bond_style      harmonic
+bond_coeff      1 469.0   1.4000
+bond_coeff      2 367.0   1.0800
+
+angle_style     harmonic
+angle_coeff     1 63.0    120.00
+angle_coeff     2 35.0    120.00
+
+dihedral_style   opls
+dihedral_coeff   1 0.0 7.25 0.0 0.0
+dihedral_coeff   2 0.0 7.25 0.0 0.0
+dihedral_coeff   3 0.0 7.25 0.0 0.0
+
+improper_style  umbrella
+improper_coeff  1 5.0 0.0
+improper_coeff  2 0.0 0.0 
+
+special_bonds   lj/coul 0.0 0.0 0.5
+
+neighbor        2.0 bin
+neigh_modify    delay 5
+timestep        1.0 
+thermo          100
+
+dump 1 all atom 	2000 dump.lammpstrj
+
+fix             1 all nvt temp 5 5 100.0 
+run 100
+
