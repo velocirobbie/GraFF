@@ -27,12 +27,16 @@ Initialising a system with only graphitic carbons would then require these lines
 ```
 pair_style hybrid/overlay lj/cut/coul/long 11.0 9.0 hbond/graphene 2 5.0 6.0 45
 pair_coeff  1 1 hbond/graphene 1 i 0.025  3.627 2
-pair_coeff      1 1 lj/cut/coul/long 0.020 3.5500
+pair_coeff  1 1 lj/cut/coul/long 0.020 3.5500
 ```
 
 We rocommend using the OPLS forcefield for bonded interactions and any other molecule interactions in the simulation: DOI:10.1021/ja9621760
 
 ### Example
 
-We provide a minimal example to test your GraFF intsalation. In the example atom type 1 is Carbon, 2 is hydrogen
+We provide a minimal example to test your GraFF intsalation with the files `in.example` and `graphene.data`. In the example atom type 1 is Carbon, 2 is hydrogen.
+
+`lmp_exec < in.example` should run if your intsall is correct.
+
+Contact me github if you have any issues.
  
